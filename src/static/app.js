@@ -28,10 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchValue = searchInput.value.toLowerCase();
     const sortValue = sortSelect.value;
 
-    // Filtrar actividades por nombre
-    let filtered = Object.entries(allActivities).filter(([name, details]) =>
-      name.toLowerCase().includes(searchValue)
-    );
+    // Validar que allActivities sea un objeto válido
+    let filtered = [];
+    if (allActivities && typeof allActivities === "object") {
+      filtered = Object.entries(allActivities).filter(([name, details]) =>
+        name.toLowerCase().includes(searchValue)
+      );
+    }
 
     // Ordenar actividades
     if (sortValue === "name") {
